@@ -1,0 +1,15 @@
+.ftrA {
+  background-color: #3299bb;
+  height: 150px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.link {
+  color: white;
+}
+
+.float {
+  float: right;
+}

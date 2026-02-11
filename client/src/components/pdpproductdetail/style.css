@@ -1,0 +1,41 @@
+.add{
+    background-color: #3299BB;
+    color:white;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+.add:hover{
+    background-color: #424242;
+    color:white;
+}
+.productheight{
+    height: 500px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.align{
+    display:inline;
+}
+.prodDesc{
+    height:375px;
+}
+.bott{
+    border-bottom: 1px solid #E9E9E9;
+    margin:20px;
+    margin-bottom:20px;
+}
+.bott2{
+    margin:20px;
+    margin-bottom:40px;
+}
+.font-wght{
+    font-weight: 700;
+}
+.prc-wght{
+    font-weight: 510;
+}

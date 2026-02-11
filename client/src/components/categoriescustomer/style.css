@@ -1,0 +1,36 @@
+.nav{
+    color: white;
+    text-decoration: none;
+}
+
+.nav-item{
+    background-color: #E9E9E9;
+    color: black;
+    margin-bottom: 20px;
+    text-decoration: none;
+    height: 40px;
+    padding-top: 5px;
+}
+
+.nav-item:hover{
+    background-color: #BCBCBC;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-item:link{
+    text-decoration: none;
+}
+.nav-item:active{
+    text-decoration: none;
+}
+.nav-item:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+
+}
+.hoverlink{
+    text-decoration: none;
+}

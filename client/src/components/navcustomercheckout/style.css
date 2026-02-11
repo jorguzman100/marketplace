@@ -1,0 +1,15 @@
+.buttonNav{
+    background-color: #3299BB;
+    color:white;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-left: 2px;
+}
+.buttonNav:hover{
+    background-color: #424242;
+    color:white;
+}

@@ -1,0 +1,19 @@
+.ftrC {
+  background-color: #3299bb;
+  height: 150px;
+  margin-top: 25px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.link {
+  color: white;
+}
+
+.float {
+  float: right;
+}

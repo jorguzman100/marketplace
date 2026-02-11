@@ -1,0 +1,58 @@
+.buttonNav {
+  background-color: #3299bb;
+  color: white;
+  padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 2px;
+  margin-bottom: 10px;
+}
+.buttonNav:hover {
+  background-color: #424242;
+  color: white;
+}
+.marg {
+  margin-bottom: 20px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.logCard {
+  padding: 20px;
+  margin: 20px;
+}
+.productspage{
+  margin-bottom:20px;
+}
+.minht{
+  min-height: 75vh;
+}
+.minCar{
+  min-height: 100px;
+}
+.pdpm{
+  margin-left:5px;
+  margin-right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.tabAdmin{
+  min-height: 75vh;
+  margin-bottom: 20px;
+}
+.nav-link.active{
+  background-color: #3299bb;
+  color:white;
+  min-height:50px;
+  border-radius: 5px
+}
+.nav-link{
+  background-color: #E9E9E9;
+  color:black;
+  min-height:50px;
+  border-radius: 5px;
+  margin-top:1px;
+}

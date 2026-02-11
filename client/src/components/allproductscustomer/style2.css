@@ -1,0 +1,65 @@
+.buttonNav {
+  background-color: #3299bb;
+  color: white;
+  padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 2px;
+}
+.buttonNav:hover {
+  background-color: #424242;
+  color: white;
+}
+.crd-height {
+  height: 500px;
+  margin-top:20px;
+  margin-bottom:100px;
+}
+.sub-crd-height {
+  height: 120px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.crd-img-hgt {
+  height: 225px;
+  max-width: 225px;
+  padding:20px;
+  text-align: center;
+}
+.price{
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.prd-tle{
+  font-weight: 700;
+  font-size: 25px;
+  height:50px;
+}
+.card-hgt{
+  height:600px;
+}
+.img-hgt{
+  height: 250px;
+  padding: 20px;
+}
+.smll-height{
+  margin-bottom:20px;
+}
+.imgCls{
+  width:100%;
+  height:250px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.imgClsi{
+  flex-shrink:0;
+  -webkit-flex-shrink: 0;
+  max-width:70%;
+  max-height:90%;
+}

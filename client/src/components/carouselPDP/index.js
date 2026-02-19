@@ -1,33 +1,25 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "./styleCar.css"
 
 function carousel({ picture, picture2, picture3 }) {
+  const images = [picture, picture2, picture3].filter(Boolean);
+
+  if (!images.length) {
+    return null;
+  }
 
 
   return (
-    <Carousel className="imgCls2">
-      <Carousel.Item className="imgCls2">
-        <img
-          className="imgClsi2"
-          src={picture}
-          alt="First slide"
-        />
-      </Carousel.Item >
-      <Carousel.Item className="imgCls2">
-        <img
-          className="imgClsi2"
-          src={picture2}
-          alt="Third slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item className="imgCls2">
-        <img
-          className="imgClsi2"
-          src={picture3}
-          alt="Third slide"
-        />
-      </Carousel.Item>
+    <Carousel className="imgCls2 market-product-carousel" interval={4200} pause="hover" touch>
+      {images.map((image, index) => (
+        <Carousel.Item className="market-product-slide" key={`${image}-${index}`}>
+          <img
+            className="imgClsi2 market-product-image"
+            src={image}
+            alt={`Product view ${index + 1}`}
+          />
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }

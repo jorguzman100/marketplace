@@ -8,19 +8,33 @@ function ProductDetail({ product, productId, productName, description, price }) 
 
     const [added, setAdded] = useState("")
     const [localStorageProducts, setlocalStorageProducts] = useState([]);
-  let localProducts = [];
 
   useEffect(() => {
     getLocalStoragePdts();
   }, []);
 
  const getLocalStoragePdts = () => {
-    // console.log('localStorage.length: ', localStorage.length);
+    let localProducts = [];
+
     for (let i = 0; i < localStorage.length; i++) {
       let id = localStorage.key(i);
-      let product = JSON.parse(localStorage.getItem(id));
-      localProducts.push(product);
-      // console.log('productName: ', product.productName);
+
+      let currentProduct;
+      try {
+        currentProduct = JSON.parse(localStorage.getItem(id));
+      } catch (error) {
+        continue;
+      }
+
+      if (!currentProduct || typeof currentProduct !== "object") {
+        continue;
+      }
+
+      if (typeof currentProduct.price === "undefined" || typeof currentProduct.quantity === "undefined") {
+        continue;
+      }
+
+      localProducts.push(currentProduct);
     }
     
     setlocalStorageProducts(localProducts);

@@ -2,9 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import './CheckoutForm.css'
 import API from '../../utils/API';
-import { Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
+import { CHECKOUT_PROGRESS, unlockCheckoutStep } from "../../utils/checkoutProgress";
 
 export default function CheckoutForm({ consumer }) {
+  const location = useLocation();
+  const isCheckFlow = location.pathname.includes("/check");
+  const confirmationPath = isCheckFlow
+    ? process.env.PUBLIC_URL + "/check/confirmation"
+    : process.env.PUBLIC_URL + "/home/confirmation";
 
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -84,7 +90,18 @@ export default function CheckoutForm({ consumer }) {
 
     for (let i = 0; i < localStorage.length; i++) {
       let id = localStorage.key(i);
-      let product = JSON.parse(localStorage.getItem(id));
+      let raw = localStorage.getItem(id);
+
+      if (!raw) {
+        continue;
+      }
+
+      let product;
+      try {
+        product = JSON.parse(raw);
+      } catch (error) {
+        continue;
+      }
 
       if (typeof product === "object" && product.price) {
         products.push(product);
@@ -145,7 +162,17 @@ export default function CheckoutForm({ consumer }) {
 
     for (let i = 0; i < localStorage.length; i++) {
       let id = localStorage.key(i);
-      let product = JSON.parse(localStorage.getItem(id));
+      let raw = localStorage.getItem(id);
+      if (!raw) {
+        continue;
+      }
+
+      let product;
+      try {
+        product = JSON.parse(raw);
+      } catch (error) {
+        continue;
+      }
 
       if (typeof product === "object" && product.price) {
         items.push({
@@ -202,6 +229,7 @@ export default function CheckoutForm({ consumer }) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
+      unlockCheckoutStep(CHECKOUT_PROGRESS.CONFIRMATION);
       setError(null);
       setProcessing(false);
       setSucceeded(true);
@@ -211,7 +239,7 @@ export default function CheckoutForm({ consumer }) {
   return (
     <>
       {confirmation === "Confirmed" ?
-        <Redirect push to="/home/confirmation" /> :
+        <Redirect push to={confirmationPath} /> :
         ""}
 
       <div className='root'>

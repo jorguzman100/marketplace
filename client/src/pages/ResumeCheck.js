@@ -4,12 +4,12 @@ import ProductList from '../components/checkoutProducts'
 import ProductResume from '../components/checkoutProductsResume'
 import NavCustomer from '../components/navcustomercheckout'
 import Footer from '../components/footercustomercheckout'
+import { CHECKOUT_PROGRESS, getCheckoutProgress, setCheckoutProgress } from "../utils/checkoutProgress";
 
 
 function PDP() {
 
   const [localStorageProducts, setlocalStorageProducts] = useState([]);
-  let localProducts = [];
 
   useEffect(() => {
     getLocalStoragePdts();
@@ -23,14 +23,33 @@ function PDP() {
 
 
   const getLocalStoragePdts = () => {
-    // console.log('localStorage.length: ', localStorage.length);
+    let localProducts = [];
+
     for (let i = 0; i < localStorage.length; i++) {
       let id = localStorage.key(i);
-      let product = JSON.parse(localStorage.getItem(id));
+
+      let product;
+      try {
+        product = JSON.parse(localStorage.getItem(id));
+      } catch (error) {
+        continue;
+      }
+
+      if (!product || typeof product !== "object") {
+        continue;
+      }
+
+      if (typeof product.price === "undefined" || typeof product.quantity === "undefined") {
+        continue;
+      }
+
       localProducts.push(product);
-      // console.log('productName: ', product.productName);
     }
-    console.log('localProducts: ', localProducts);
+
+    if (localProducts.length > 0 && getCheckoutProgress() === CHECKOUT_PROGRESS.CONFIRMATION) {
+      setCheckoutProgress(CHECKOUT_PROGRESS.REVIEW);
+    }
+
     setlocalStorageProducts(localProducts);
   }
 

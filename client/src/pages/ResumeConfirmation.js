@@ -7,11 +7,18 @@ import Card from 'react-bootstrap/Card';
 import NavCustomer from '../components/navcustomercheckout';
 import Footer from '../components/footercustomercheckout';
 import API from '../utils/API'
+import { Redirect, useLocation } from "react-router-dom";
+import { CHECKOUT_PROGRESS, CHECKOUT_PROGRESS_KEY, getCheckoutProgress } from "../utils/checkoutProgress";
 
 function PDP() {
 
   const [order, setOrder] = useState({});
   const [orderProducts, setOrderProducts] = useState([]);
+  const location = useLocation();
+  const isCheckFlow = location.pathname.includes("/check");
+  const reviewPath = isCheckFlow ? process.env.PUBLIC_URL + "/check" : process.env.PUBLIC_URL + "/home/shoppingcart";
+  const paymentPath = isCheckFlow ? process.env.PUBLIC_URL + "/check/payment" : process.env.PUBLIC_URL + "/home/payment";
+  const progress = getCheckoutProgress();
 
   // let orderProducts = [];
   // let address = '';
@@ -40,13 +47,31 @@ function PDP() {
   const loadOrders = () => {
     API.getOrders()
       .then(res => {
-        // setOrders(res.data);
-        // console.log('loadOrders - res.data: ', res.data);
-        localStorage.clear();
-        // console.log('localStorage cleared');
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const key = localStorage.key(i);
+          if (!key || key === "theme" || key === CHECKOUT_PROGRESS_KEY) {
+            continue;
+          }
+
+          const raw = localStorage.getItem(key);
+          if (!raw) {
+            continue;
+          }
+
+          let parsed;
+          try {
+            parsed = JSON.parse(raw);
+          } catch (error) {
+            continue;
+          }
+
+          if (parsed && typeof parsed === "object" && typeof parsed.price !== "undefined") {
+            localStorage.removeItem(key);
+          }
+        }
+
         let orders = [...res.data];
         let lastOrder = orders[orders.length - 1];
-        // console.log('lastOrder: ', lastOrder);
         setOrder(lastOrder);
       })
       .catch(err => console.log(err));
@@ -54,6 +79,9 @@ function PDP() {
 
   return (
     <>
+      {progress < CHECKOUT_PROGRESS.CONFIRMATION ? (
+        <Redirect to={progress >= CHECKOUT_PROGRESS.PAYMENT ? paymentPath : reviewPath} />
+      ) : null}
       <NavCustomer />
       <Container className="marg minht" fluid>
         <Row>

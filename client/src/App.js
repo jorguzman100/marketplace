@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import MasterCustomer from './pages/MasterCustomer'
 import MasterAdmin from './pages/MasterAdmin'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import MasterCheckout from './pages/MasterCustomerCheckout'
 import UserContext from "./utils/UserContext"
+import ThemeContext from "./utils/ThemeContext"
 
 // Add Stripe to your React app
 // Use the Stripe.js and the Stripe Elements UI library to stay PCI compliant by ensuring that card details go directly to Stripe and never reach your server.
@@ -23,6 +24,22 @@ import UserContext from "./utils/UserContext"
 
 
 function App() {
+  const getInitialTheme = () => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("theme"));
+      if (stored === "dark" || stored === "light") {
+        return stored;
+      }
+    } catch (error) {
+      localStorage.removeItem("theme");
+    }
+
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  };
 
   const [user, setUser] = useState({
     userName: "",
@@ -36,26 +53,38 @@ function App() {
     picture: "",
     paymentMethod: "",
   })
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
 
 
   // Initialize Stripe Elements
   // Pass the resulting promise from loadStripe to the Elements provider. This allows the child components to access the Stripe service via the Elements consumer.
   return (
     <Router>
-    <UserContext.Provider value={{user, setUser}}>
-      <Wrapper>
-        <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
-          <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
-          <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
-          <Route path={process.env.PUBLIC_URL + '/check'} component={MasterCheckout} />
-          {/*  <Elements stripe={promise}>
-            <Route path={process.env.PUBLIC_URL + '/checkout'} component={CheckoutForm} />
-          </Elements> */}
-          <Route component={MasterCustomer} />
-        </Switch>
-      </Wrapper>
-    </UserContext.Provider>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <UserContext.Provider value={{user, setUser}}>
+          <Wrapper>
+            <Switch>
+              <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
+              <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+              <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
+              <Route path={process.env.PUBLIC_URL + '/check'} component={MasterCheckout} />
+              {/*  <Elements stripe={promise}>
+                <Route path={process.env.PUBLIC_URL + '/checkout'} component={CheckoutForm} />
+              </Elements> */}
+              <Route component={MasterCustomer} />
+            </Switch>
+          </Wrapper>
+        </UserContext.Provider>
+      </ThemeContext.Provider>
     </Router>
   );
 }

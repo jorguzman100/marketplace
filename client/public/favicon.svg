@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="market-gradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00989e" />
+      <stop offset="1" stop-color="#00c7cf" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#market-gradient)" />
+  <path
+    d="M23 25V22C23 17.03 27.03 13 32 13C36.97 13 41 17.03 41 22V25H45C46.66 25 48 26.34 48 28V44C48 48.42 44.42 52 40 52H24C19.58 52 16 48.42 16 44V28C16 26.34 17.34 25 19 25H23ZM27 25H37V22C37 19.24 34.76 17 32 17C29.24 17 27 19.24 27 22V25ZM20 30V44C20 46.21 21.79 48 24 48H40C42.21 48 44 46.21 44 44V30H40V33C40 34.1 39.1 35 38 35C36.9 35 36 34.1 36 33V30H28V33C28 34.1 27.1 35 26 35C24.9 35 24 34.1 24 33V30H20Z"
+    fill="#ffffff"
+  />
+</svg>

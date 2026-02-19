@@ -3,9 +3,15 @@ import React from "react";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import "./style.css"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { CHECKOUT_PROGRESS, unlockCheckoutStep } from "../../utils/checkoutProgress";
 
 function ProductsListResume({ localStorageProducts }) {
+    const location = useLocation();
+    const isCheckFlow = location.pathname.includes("/check");
+    const paymentPath = isCheckFlow
+        ? process.env.PUBLIC_URL + "/check/payment"
+        : process.env.PUBLIC_URL + "/home/payment";
 
     let subtototal = 0;
     let shipping = 100;
@@ -38,7 +44,8 @@ function ProductsListResume({ localStorageProducts }) {
                     </Row>
                     <Row>
                         <Link
-                            to={process.env.PUBLIC_URL + '/home/payment'}
+                            to={paymentPath}
+                            onClick={() => unlockCheckoutStep(CHECKOUT_PROGRESS.PAYMENT)}
                         >
                             <div className="buttonNav col-12">Purchase</div>
                         </Link>
@@ -50,7 +57,6 @@ function ProductsListResume({ localStorageProducts }) {
 }
 
 export default ProductsListResume;
-
 
 
 

@@ -5,7 +5,7 @@
 This project is a full-stack marketplace app built with React + Express + MongoDB. It includes a customer shopping experience (browse, search, cart, checkout) and an admin workspace for managing products, categories, stores, sellers, and viewing dashboard charts.  
 It feels like a practical e-commerce sandbox you can run locally, seed with sample data, and keep iterating on.
 
----
+
 
 ## ✨ Features
 
@@ -18,7 +18,7 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 | 📊 | Dashboard charts (sales/store/order insights) | Adds analytics views using Chart.js for a more complete admin experience. |
 | 🌗 | Theme toggle (light/dark) | Small UX touch that makes the app feel more polished. |
 
----
+
 
 <p align="center">
   <img
@@ -29,7 +29,7 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
   />
 </p>
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -42,7 +42,7 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 ![React_Bootstrap](https://img.shields.io/badge/React_Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
 
----
+
 
 ## 🧩 Project Snapshot
 
@@ -52,7 +52,7 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 - Frontend routes: customer storefront (`/home/...`), admin panel (`/admin`), and compact checkout flow (`/check/...`)
 - Seed script: `npm run seed` resets and inserts sample data (products/orders)
 
----
+
 
 ## 🚀 Live Demo
 
@@ -61,7 +61,7 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 
 No public deployment yet. The repo is ready to run locally and iterate on first.
 
----
+
 
 ## 💻 Run it locally
 
@@ -98,7 +98,7 @@ REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_test_replace_me
 ```
 </details>
 
----
+
 
 ## 🤝 Contributors
 

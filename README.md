@@ -102,6 +102,6 @@ REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_test_replace_me
 
 ## 🤝 Contributors
 
-- **Jorge Guzman**  ·  [@jorguzman100](https://github.com/jorguzman100)
 - **Raul Alarcon**  ·  [@raul-ae](https://github.com/raul-ae)
 - **Rodrigo Rosas**  ·  [@rodrigorosasv](https://github.com/rodrigorosasv)
+- **Jorge Guzman**  ·  [@jorguzman100](https://github.com/jorguzman100)

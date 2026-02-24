@@ -19,8 +19,8 @@ import ThemeContext from "./utils/ThemeContext"
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // loadStripe is initialized with your real test publishable API key.
-// const promise = loadStripe(process.env.STRIPE_API_KEY);
-// const promise = loadStripe("pk_test_51HLY6nIsyYjySygOXa1LA85XDeyEmpELSHi6IGah9ECVTI6zod8Hk5Z7IEFDlNLIjTFLJB5SOTnpI6R5szjarang00wQanVBJ7");
+// const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+// const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 
 function App() {

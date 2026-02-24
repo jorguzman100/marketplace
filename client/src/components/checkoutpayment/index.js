@@ -1,19 +1,30 @@
 import React from "react";
 // import "./style.css";
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
 import CheckoutForm from "../CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-const promise = loadStripe("pk_test_51HLY6nIsyYjySygOXa1LA85XDeyEmpELSHi6IGah9ECVTI6zod8Hk5Z7IEFDlNLIjTFLJB5SOTnpI6R5szjarang00wQanVBJ7");
+const stripePublishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
 
 function ProductsList({ consumer }) {
+    if (!stripePromise) {
+        return (
+            <Card body className="cardRes">
+                <h5>Stripe is not configured for this environment.</h5>
+                <p className="mb-0">
+                    Set <code>REACT_APP_STRIPE_PUBLISHABLE_KEY</code> in <code>client/.env</code>
+                    and restart the React app.
+                </p>
+            </Card>
+        );
+    }
 
 
     return (
         <Card body className="cardRes">
-            <Elements stripe={promise}>
+            <Elements stripe={stripePromise}>
                 <CheckoutForm consumer={consumer} />
             </Elements>
         </Card>
@@ -22,6 +33,3 @@ function ProductsList({ consumer }) {
 }
 
 export default ProductsList;
-
-
-

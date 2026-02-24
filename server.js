@@ -1,3 +1,6 @@
+// Load env vars before reading process.env values below.
+require("dotenv").config();
+
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -6,11 +9,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require("path");
 
-// Handling api keys
-require('dotenv').config();
-
 // Stripe library
-const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_API_KEY);
+const stripeSecretKey =
+  process.env.STRIPE_SECRET_KEY || process.env.STRIPE_TEST_SECRET_API_KEY;
+const stripe = stripeSecretKey ? require("stripe")(stripeSecretKey) : null;
+
+if (!stripeSecretKey) {
+  console.warn(
+    "Stripe secret key is not configured. Set STRIPE_SECRET_KEY (preferred) or STRIPE_TEST_SECRET_API_KEY."
+  );
+}
 
 
 // Define middleware here
@@ -56,6 +64,12 @@ const calculateOrderAmount = (items) => {
 // A PaymentIntent tracks the customer's payment lifecycle, keeping track of any failed payment attempts and ensuring the customer is only charged once. Return the PaymentIntent's client secret in the response to finish the payment on the client.
 app.post("/create-payment-intent", async (req, res) => {
   try {
+    if (!stripe) {
+      return res.status(500).json({
+        error: "Stripe is not configured on the server.",
+      });
+    }
+
     const { items } = req.body;
 
     console.log("Incoming items:", items);

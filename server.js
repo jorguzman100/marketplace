@@ -27,8 +27,10 @@ app.use(express.json());
 
 console.log('***** process.env.NODE_ENV: ***** ', process.env.NODE_ENV);
 
-// Serve up static assets (usually on heroku)
-// Serve up static assets
+// Add routes, both API and view
+app.use(routes);
+
+// Serve static assets and React app after API routes are mounted.
 if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "client/build");
 
@@ -37,13 +39,9 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(buildPath, "index.html"));
   });
-
 } else {
   app.use('/static', express.static(path.join(__dirname, 'client/public')))
 }
-
-// Add routes, both API and view
-app.use(routes);
 
 // Connect to the Mongo DB
 

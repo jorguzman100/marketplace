@@ -56,9 +56,9 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 
 ## 🚀 Live Demo
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Marketplace-16a34a?style=for-the-badge)](https://marketplace.jorgeguzman.dev/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Marketplace-16a34a?style=for-the-badge)](https://marketplace.jorgeguzman.dev/){:target="_blank" rel="noopener noreferrer"}
 
-[![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/)
+[![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/){:target="_blank" rel="noopener noreferrer"}
 
 
 

@@ -56,10 +56,9 @@ It feels like a practical e-commerce sandbox you can run locally, seed with samp
 
 ## 🚀 Live Demo
 
-![Deployment](https://img.shields.io/badge/Deployment-Not%20deployed%20yet-lightgrey?style=for-the-badge)
-[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/jorguzman100/marketplace)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Marketplace-16a34a?style=for-the-badge)](https://marketplace.jorgeguzman.dev/)
 
-No public deployment yet. The repo is ready to run locally and iterate on first.
+[![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/)
 
 
 
